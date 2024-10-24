@@ -7,15 +7,20 @@ import { useState } from 'react'
 
 function App() {
   const [bookmarks, setBookmarks] = useState([])
-  const [readingTime,setReadingTime]=useState(0);
+  const [readingTime, setReadingTime] = useState(0);
   const handleAddToBookmark = (blog) => {
-    const newBookmark=[...bookmarks,blog];
+    const newBookmark = [...bookmarks, blog];
     setBookmarks(newBookmark);
+    
 
   }
-  const handleMarkAsRead=(time)=>{
-    const newReadingTime=readingTime+time;
+  const handleMarkAsRead = (id,time) => {
+    const newReadingTime = readingTime + time;
     setReadingTime(newReadingTime);
+    // remove the read blog from the bookmarks
+    const remaingBookMarks=bookmarks.filter(bookmark=>bookmark.id!==id);
+    setBookmarks(remaingBookMarks);
+    
   }
 
 
